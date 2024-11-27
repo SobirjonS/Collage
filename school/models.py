@@ -48,6 +48,7 @@ class OurHistory(BaseModel):
     def __str__(self) -> str:
         return self.history_year
     
+    
 class Result(BaseModel):
     name = models.CharField(_("Name"),max_length=255)
     amount = models.PositiveIntegerField(_("Amount"),default=0)
@@ -58,20 +59,8 @@ class Result(BaseModel):
         verbose_name_plural = _("Results")
         
     def __str__(self) -> str:
-        return self.name
+        return self.name    
     
-    
-class AboutCard(BaseModel):
-    name = models.CharField(_("Card name"),max_length=225)
-    icon = models.ImageField(_('Card icon'),max_length=255)
-    description = models.TextField(_('Card description'),max_length=255)
-    
-    class Meta:
-        verbose_name = _("About page card")
-        verbose_name_plural = _("About page cards")
-        
-    def __str__(self) -> str:
-        return self.name
     
 class Teacher(BaseModel):
     name = models.CharField(_('Teacher'),max_length=255)
@@ -89,23 +78,10 @@ class Teacher(BaseModel):
     def __str__(self) -> str:
         return self.name
     
-    
-    
-class BlogCategory(BaseModel):
-    name = models.CharField(_("Blog category name"),max_length=255)
-    
-    class Meta:
-        verbose_name = _("Blog category")
-        verbose_name_plural = _("Blog categories")
-
-    def __str__(self) -> str:
-        return self.name
-
 
 class Blog(BaseModel):
     title = models.CharField(_("Blog title"),max_length=255)
     slug = models.CharField(_("Blog slug"),max_length=255,blank=True,null=True)
-    category = models.ForeignKey(BlogCategory,on_delete=models.CASCADE,verbose_name=_("Blog category"))
     image = models.ImageField(_("Blog image"),upload_to='blog/')
     description = models.TextField(_("Blog description"))
     is_new = models.BooleanField(default=True)
@@ -121,41 +97,3 @@ class Blog(BaseModel):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args,**kwargs)
-
-class Tag(BaseModel):
-    name = models.CharField(_('Tag name'),max_length=255)
-    
-    class Meta:
-        verbose_name = _("Tag")
-        verbose_name_plural = _("Tags")
-    
-    def __str__(self) -> str:
-        return self.name
-    
-    
-class Course(BaseModel):
-    name = models.CharField(_("Course name"),max_length=255,blank=False, null=False)
-    description = models.TextField(_("Course description"),blank=False, null=False)
-    image = models.ImageField(_("Course image"),upload_to='course/')
-    
-    class Meta:
-        verbose_name = _("Course")
-        verbose_name_plural = _("Courses")
-        
-    def __str__(self) -> str:
-        return self.name
-    
-
-class Contact(BaseModel):
-    first_name = models.CharField(_('First name'),max_length=255)
-    last_name = models.CharField(_("Last name"),max_length=255)
-    email = models.CharField(_("Email"),max_length=255)
-    phone = models.CharField(_("Phone"),max_length=255)
-    detail = models.TextField(_("Detail"))
-    
-    class Meta:
-        verbose_name = _("Contact")
-        verbose_name_plural = _("Contact")
-    
-    def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}"

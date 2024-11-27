@@ -4,19 +4,14 @@ from .models import (
     About,
     OurHistory,
     Result,
-    AboutCard,
     Teacher,
-    BlogCategory,
     Blog,
-    Tag,
-    Course,
     )
 
 
 @register(Slider)
 class SliderTranslateOptions(TranslationOptions):
-    fields = ('title','description')
-    
+    fields = ('title','description')    
     
 @register(About)
 class AboutTranslateOptions(TranslationOptions):
@@ -29,10 +24,6 @@ class OurHistoryTranslateOptions(TranslationOptions):
 @register(Result)
 class ResultTranslateOptions(TranslationOptions):
     fields = ('name',)
-
-@register(AboutCard)
-class AboutCardTranslateOptions(TranslationOptions):
-    fields = ('name','description')
     
 @register(Teacher)
 class TeacherTranslateOptions(TranslationOptions):
@@ -41,15 +32,3 @@ class TeacherTranslateOptions(TranslationOptions):
 @register(Blog)
 class BlogTranslateOptions(TranslationOptions):
     fields = ('title','description',)
-    
-@register(BlogCategory)
-class BlogCategoryTranslateOptions(TranslationOptions):
-    fields = ('name',)
-    
-@register(Tag)
-class TagTranslateOptions(TranslationOptions):
-    fields = ('name',)
-    
-@register(Course)
-class CourseTranslateOptions(TranslationOptions):
-    fields = ('name', 'description')

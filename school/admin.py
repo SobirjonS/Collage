@@ -6,13 +6,8 @@ from .models import (
     About,
     OurHistory,
     Result,
-    AboutCard,
     Teacher,
-    BlogCategory,
     Blog,
-    Tag,
-    Course,
-    Contact,
     )
 
 
@@ -59,20 +54,7 @@ class ResultAdmin(admin.ModelAdmin):
         (_('Russian'),{'fields':('name_ru',)}),
         (_('English'),{'fields':('name_en',)}),
         (_('Amount'), {'fields': ('amount',)}),
-        (_('Icon'), {'fields': ('icon',)}),
-        
-    )
-    
-   
-    
-@admin.register(AboutCard)
-class AboutCardAdmin(admin.ModelAdmin):
-    list_display = ('name_uz','name_ru','name_en')
-    fieldsets = (
-        (_('Uzbek'),{'fields':('name_uz','description_uz')}),
-        (_('Russian'),{'fields':('name_ru','description_ru')}),
-        (_('English'),{'fields':('name_en','description_en')}),
-        (_('Icon'), {'fields': ('icon',)}),
+        (_('Icon'), {'fields': ('icon',)}),        
     )
     
 
@@ -87,15 +69,6 @@ class TeacherAdmin(admin.ModelAdmin):
         (_('Link'), {'fields': ('facebook_link','twitter_link','linkedin_link','skype_link')}),
     )
 
-
-@admin.register(BlogCategory)
-class BlogCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name_uz','name_ru','name_en')
-    fieldsets = (
-        (_('Uzbek'),{'fields':('name_uz',)}),
-        (_('Russian'),{'fields':('name_ru',)}),
-        (_('English'),{'fields':('name_en',)}),
-    )
     
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
@@ -109,24 +82,3 @@ class BlogAdmin(admin.ModelAdmin):
         (_('Slug'), {'fields': ('slug', )}),
         (_('New'), {'fields': ('is_new', )}),
     )
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name_uz','name_ru','name_en')
-    fieldsets = (
-        (_('Uzbek'),{'fields':('name_uz',)}),
-        (_('Russian'),{'fields':('name_ru',)}),
-        (_('English'),{'fields':('name_en',)}),
-    )
-    
-@admin.register(Course)
-class CourseAdmin(admin.ModelAdmin):
-    list_display = ('name_uz','name_ru','name_en')
-    fieldsets = (
-        (_('Uzbek'),{'fields':('name_uz','description_uz')}),
-        (_('Russian'),{'fields':('name_ru','description_ru')}),
-        (_('English'),{'fields':('name_en','description_en')}),
-        (_('Image'), {'fields': ('image', )}),
-    )
-
-admin.site.register(Contact)
